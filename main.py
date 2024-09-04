@@ -3,7 +3,15 @@ from functions import generate_email, has_special_chars
 from transformers import AutoModel, AutoTokenizer
 import torch
 import json
+import os
+import os.path
 
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+from googleapiclient.http import MediaFileUpload
 # Load the data
 df = pd.read_excel('TestFiles.xlsx')
 
