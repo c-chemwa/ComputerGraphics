@@ -1,4 +1,6 @@
-from hello import hi
+import pandas as pd
+from functions import generate_email
 
-if __name__ == '__main__':
-    hi(name="Caleb")
+# Load the data
+df = pd.read_excel('TestFiles.xlsx')
+df['Email'] = df['Student Name'].apply(generate_email)
