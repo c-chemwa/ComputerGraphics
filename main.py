@@ -75,3 +75,7 @@ combined_df = pd.concat([males, females]).sample(frac=1).reset_index(drop=True)
 #Saves the combined dataframes as json and jsonl
 combined_df.to_json('output/combined.json', orient='records', indent=4)
 combined_df.to_json('output/combined.jsonl', orient='records', lines=True)
+
+#Defining scopes
+
+SCOPES = ["https"]
