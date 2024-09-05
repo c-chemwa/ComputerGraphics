@@ -10,3 +10,13 @@
 2024-09-05 19:45:04,029:INFO:Number of female students: 24
 2024-09-05 19:45:04,034:INFO:Special character names identified and saved
 2024-09-05 19:45:04,039:INFO:Male and female student lists saved
+2024-09-05 21:00:10,903:INFO:Data loaded successfully
+2024-09-05 21:00:10,913:INFO:Email addresses generated
+2024-09-05 21:00:10,916:INFO:Number of male students: 40
+2024-09-05 21:00:10,916:INFO:Number of female students: 24
+2024-09-05 21:00:10,950:INFO:Special character names identified and saved
+2024-09-05 21:00:10,953:INFO:Male and female student lists saved
+2024-09-05 21:03:08,331:INFO:"GET /?state=AsS8nUlwoijhDu94SNPmbz0AMtKi94&code=4/0AQlEd8wz7caCQBfXh6NMDNEsuQCzwdfK-DLOC3JGfmQ8LHusYMZryyRIb6bcNq8MGmG8Yg&scope=https://www.googleapis.com/auth/drive.file HTTP/1.1" 200 65
+2024-09-05 21:03:08,844:INFO:file_cache is only supported with oauth2client<4.0.0
+2024-09-05 21:03:10,600:INFO:file_cache is only supported with oauth2client<4.0.0
+2024-09-05 21:03:12,247:INFO:file_cache is only supported with oauth2client<4.0.0
