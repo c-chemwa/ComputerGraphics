@@ -1,7 +1,4 @@
 # ComputerGraphics
-Here's a comprehensive `README.md` file for your project:
-
----
 
 # Student Data Processor and Backup to Google Drive
 
