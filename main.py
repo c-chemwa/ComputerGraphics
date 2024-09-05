@@ -1,81 +1,45 @@
+# main.py
 import pandas as pd
+import logging
 from functions import generate_email, has_special_chars
-from transformers import AutoModel, AutoTokenizer
-import torch
-import json
-import os
-import os.path
 
-from google.auth.transport.requests import Request
-from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
-from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
-from googleapiclient.http import MediaFileUpload
-# Load the data
-df = pd.read_excel('TestFiles.xlsx')
+# Set up logging
+logging.basicConfig(filename='computations.log', level=logging.INFO,
+                    format='%(asctime)s:%(levelname)s:%(message)s')
 
-#Application of the email generation function
-df['Email'] = df['Student Name'].apply(generate_email)
+def main():
+    try:
+        # Load the data
+        df = pd.read_excel('TestFiles.xlsx')
+        logging.info("Data loaded successfully")
 
-#Saving the unique character names to a log file
-special_char_names = df[df['Student Name'].apply(has_special_chars)]
-special_char_names.to_csv('logs/special_char_names.log', index=False)
+        # Generate email addresses
+        df['Email'] = df['Student Name'].apply(generate_email)
+        logging.info("Email addresses generated")
 
-#For the different genders, we save them to different log files.
-males = df[df['Gender'] == 'Male']
-females = df[df['Gender'] == 'Female']
+        # Create separate lists for male and female students
+        males = df[df['Gender'] == 'M']
+        females = df[df['Gender'] == 'F']
 
-males.to_csv('output/male_students.csv', index=False)
-females.to_csv('output/female_students.csv', index=False)
+        # Log the counts
+        logging.info(f"Number of male students: {len(males)}")
+        logging.info(f"Number of female students: {len(females)}")
 
-#Logs the counts of males and females
-with open('logs/gender_counts.log', 'w') as log_file:
-    log_file.write(f"Male students: {len(males)}\n")
-    log_file.write(f"Female students: {len(females)}\n")
+        # Identify names with special characters
+        special_char_names = df[df['Student Name'].apply(has_special_chars)]
+        special_char_names.to_csv('special_char_names.csv', index=False)
+        logging.info("Special character names identified and saved")
 
-#calculates similarities with the LaBSE model
-def get_embeddings(names):
-    inputs = tokenizer(names, return_tensors='pt', padding=True, truncation=True)
-    outputs = model(**inputs)
-    return outputs.pooler_output
+        # Save male and female lists
+        males.to_csv('male_students.csv', index=False)
+        females.to_csv('female_students.csv', index=False)
+        logging.info("Male and female student lists saved")
 
-male_names = males['Student Name'].tolist()
-female_names = females['Student Name'].tolist()
+        print("Processing complete. Check the log file for details.")
 
-male_embeddings = get_embeddings(male_names)
-female_embeddings = get_embeddings(female_names)
+    except Exception as e:
+        logging.error(f"An error occurred: {str(e)}")
+        print(f"An error occurred: {str(e)}")
 
-similarities = torch.mm(male_embeddings, female_embeddings.T).cpu().numpy()
-
-#Filters results with at least 50% and saves
-similar_pairs = []
-for i, male_name in enumerate(male_names):
-    for j, female_name in enumerate(female_names):
-        if similarities[i, j] > 0.5:
-            similar_pairs.append({
-                'male_name': male_name,
-                'female_name': female_name,
-                'similarity': similarities[i, j].item()
-            })
-
-
-
-with open('output/similarity_results.json', 'w') as f:
-    json.dump(similar_pairs, f, indent=4)
-
-
-model_name = "sentence-transformers/LaBSE"
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModel.from_pretrained(model_name)
-
-#Merge male and female dataframes
-combined_df = pd.concat([males, females]).sample(frac=1).reset_index(drop=True)
-
-#Saves the combined dataframes as json and jsonl
-combined_df.to_json('output/combined.json', orient='records', indent=4)
-combined_df.to_json('output/combined.jsonl', orient='records', lines=True)
-
-#Defining scopes
-
-SCOPES = ["https"]
+if __name__ == '__main__':
+    main()
