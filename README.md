@@ -1,7 +1,4 @@
 # ComputerGraphics
-Here's a comprehensive `README.md` file for your project:
-
----
 
 # Student Data Processor and Backup to Google Drive
 
@@ -133,7 +130,3 @@ These files will also be uploaded to your Google Drive for safe backup.
 ## License
 
 This project is licensed under the MIT License.
-
----
-
-This `README.md` provides an extensive explanation of the project, its purpose, structure, and how to use it.
