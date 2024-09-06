@@ -20,3 +20,19 @@
 2024-09-05 21:03:08,844:INFO:file_cache is only supported with oauth2client<4.0.0
 2024-09-05 21:03:10,600:INFO:file_cache is only supported with oauth2client<4.0.0
 2024-09-05 21:03:12,247:INFO:file_cache is only supported with oauth2client<4.0.0
+2024-09-06 08:23:36,518:INFO:Data loaded successfully
+2024-09-06 08:23:36,750:INFO:Email addresses generated
+2024-09-06 08:27:19,932:ERROR:An error occurred: Numpy is not available
+2024-09-06 08:43:57,029:INFO:Data loaded successfully
+2024-09-06 08:43:57,620:INFO:Email addresses generated
+2024-09-06 08:48:28,394:ERROR:An error occurred: name 'cosine_similarity' is not defined
+2024-09-06 08:54:58,545:INFO:Data loaded successfully
+2024-09-06 08:54:58,575:INFO:Email addresses generated
+2024-09-06 08:59:00,204:INFO:Names Kinyua, Victor Mfana and Muhia, Victor Mwaura are similar with a score of 0.88
+2024-09-06 09:02:22,465:INFO:Number of male students: 40
+2024-09-06 09:02:22,536:INFO:Number of female students: 24
+2024-09-06 09:02:22,664:INFO:Special character names identified and saved
+2024-09-06 09:02:22,677:INFO:Male and female student lists saved
+2024-09-06 09:02:23,474:INFO:file_cache is only supported with oauth2client<4.0.0
+2024-09-06 09:02:25,599:INFO:file_cache is only supported with oauth2client<4.0.0
+2024-09-06 09:02:27,265:INFO:file_cache is only supported with oauth2client<4.0.0

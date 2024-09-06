@@ -1,6 +1,6 @@
 import pandas as pd
 import logging
-from functions import generate_email, has_special_chars
+from functions import generate_email, has_special_chars, compare_names
 from auth import authenticate
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
@@ -34,6 +34,16 @@ def main():
         # Generate email addresses
         df['Email'] = df['Student Name'].apply(generate_email)
         logging.info("Email addresses generated")
+
+        # Compare names for similarity
+        for i in range(len(df)):
+            for j in range(i + 1, len(df)):
+                name1 = df.iloc[i]['Student Name']
+                name2 = df.iloc[j]['Student Name']
+                similarity_score = compare_names(name1, name2)
+
+                if similarity_score > 0.8:  # Adjust the threshold for your needs
+                    logging.info(f"Names {name1} and {name2} are similar with a score of {similarity_score:.2f}")
 
         # Create separate lists for male and female students
         males = df[df['Gender'] == 'M']
