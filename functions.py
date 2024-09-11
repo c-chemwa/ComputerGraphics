@@ -14,7 +14,7 @@ def generate_email(name):
 def has_special_chars(name):
     return bool(re.search(r'[^a-zA-Z\s]', name))
 
-# Load LaBSE model and tokenizer
+#loads the LaBSE model and tokenizer
 tokenizer = AutoTokenizer.from_pretrained("sentence-transformers/LaBSE")
 model = AutoModel.from_pretrained("sentence-transformers/LaBSE")
 
